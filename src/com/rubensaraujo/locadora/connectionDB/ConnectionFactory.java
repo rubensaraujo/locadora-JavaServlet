@@ -8,10 +8,11 @@ public class ConnectionFactory {
 	
 	public Connection getConnection() {
         try {
-            return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/locadora", "root", "<SENHA DO BANCO AQUI>");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	return DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/locadora", "root", " ");
         } 
-        catch (SQLException e) {
+        catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
