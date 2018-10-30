@@ -1,3 +1,7 @@
+create database locadora;
+
+use locadora;
+
 create table usuario(
 	id BIGINT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
@@ -8,3 +12,4 @@ create table usuario(
 );
 
 select * from usuario;
+
