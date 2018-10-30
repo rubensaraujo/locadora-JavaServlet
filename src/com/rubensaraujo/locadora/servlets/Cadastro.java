@@ -36,7 +36,7 @@ public class Cadastro extends HttpServlet {
 		
 		UsuarioDAO userDao = new UsuarioDAO();
 		
-		userDao.adcionaUsuario(user);
+		userDao.adicionaUsuario(user);
 		
 		PrintWriter pw =  response.getWriter();
 		

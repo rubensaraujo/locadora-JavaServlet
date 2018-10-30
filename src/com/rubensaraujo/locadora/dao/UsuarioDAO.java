@@ -2,6 +2,7 @@ package com.rubensaraujo.locadora.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.rubensaraujo.locadora.connectionDB.ConnectionFactory;
@@ -15,7 +16,7 @@ public class UsuarioDAO {
 		this.connection = new ConnectionFactory().getConnection();
 	}
 	
-	public void adcionaUsuario(UsuarioModel user) {
+	public void adicionaUsuario(UsuarioModel user) {
 		
 		String sql = "insert into usuario " + "(nome,login,senha,email) " + "values(?,?,?,?)";
 		
@@ -29,9 +30,32 @@ public class UsuarioDAO {
 			
 			stmt.execute();
 			stmt.close();
-		} 
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			throw new RuntimeException(ex);
 		}
 	}
+
+	public boolean buscaUsuarioLoginSenha(String login, String senha) {
+		String sql = "select login, senha from usuario where login = ? and senha = ?";
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, login);
+			stmt.setString(2, senha);
+			
+			boolean execute = stmt.execute();
+			
+			stmt.close();
+			
+			return execute;
+			
+			
+		} catch (SQLException ex) {
+			throw new RuntimeException(ex);
+		}
+		
+		
+	}
+
+
 }
